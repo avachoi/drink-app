@@ -6,10 +6,12 @@ const SingleDrink = (props) => {
 	console.log("props", drink);
 	return (
 		<div className="singleDrink-box">
-			<div>Name {drink.strDrink}</div>
-			<img src={drink.strDrinkThumb} />
-			<div>{drink.strGlass}</div>
-			<div>{drink.strInstructions}</div>
+			<div className="contents">
+				<img src={drink.strDrinkThumb} />
+				<div className="drinkName">{drink.strDrink}</div>
+				<div className="contents">{drink.strGlass}</div>
+				<div className="contents">{drink.strInstructions}</div>
+			</div>
 		</div>
 	);
 };

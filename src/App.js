@@ -39,7 +39,7 @@ class App extends React.Component {
 	singleDrinkDetail(id) {
 		console.log("id", id);
 
-		fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15300")
+		fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id)
 			.then((res) => res.json())
 			.then((result) => {
 				console.log("result", result);
@@ -54,29 +54,33 @@ class App extends React.Component {
 		let data = this.state.drinkList;
 		let singleDrink = this.state.singleDrink;
 
-		if (singleDrink.idDrink) {
-			return (
-				<div>
-					<div>
-						<SingleDrink drink={singleDrink} />
-					</div>
+		return (
+			<div>
+				<h1>Cocktail Picker</h1>
+				<div className="ingredient-input">
+					<input
+						type="text"
+						onChange={this.onInputChange}
+						placeholder="ingredient"
+					/>
+					<input
+						placeholder="ingredient"
+						type="button"
+						value="Enter"
+						onClick={this.onButtonClick}
+					/>
 				</div>
-			);
-		} else {
-			if (data.length) {
-				return (
+
+				{singleDrink.idDrink ? (
+					<div>
+						<div>
+							<SingleDrink drink={singleDrink} />
+						</div>
+					</div>
+				) : data.length ? (
 					<div className="App">
-						<input type="text" onChange={this.onInputChange} />
-						<input
-							type="button"
-							value="Enter a drink"
-							onClick={this.onButtonClick}
-						/>
 						<ul className="drinks">
 							{data.map((drink) => (
-								// <SingleDrink
-								//   singleDrink= {singleDrink}
-								// />
 								<div className="drinklist" key={drink.idDrink}>
 									<li
 										key={drink.idDrink}
@@ -90,25 +94,11 @@ class App extends React.Component {
 							))}
 						</ul>
 					</div>
-				);
-			} else {
-				return (
-					<div className="ingredient-input">
-						<input
-							type="text"
-							onChange={this.onInputChange}
-							placeholder="ingredient"
-						/>
-						<input
-							placeholder="ingredient"
-							type="button"
-							value="Enter"
-							onClick={this.onButtonClick}
-						/>
-					</div>
-				);
-			}
-		}
+				) : (
+					<div className="message">Pick a cocktail by it's ingredient!</div>
+				)}
+			</div>
+		);
 	}
 }
 

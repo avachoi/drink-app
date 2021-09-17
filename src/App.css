@@ -1,8 +1,8 @@
 body {
-	background-image: url("https://www.drinkmagazine.asia/wp-content/uploads/2020/06/DSC_5614-copy-scaled-e1592552504396.jpg");
+	background-image: url("https://cutewallpaper.org/21/pink-gradient-wallpaper/Pastel-Gradient-Wallpapers-Top-Free-Pastel-Gradient-.png");
 	background-repeat: repeat-y;
 	background-size: 1920px 1000px;
-	color: #380f5a;
+	color: black;
 	font-weight: 500;
 	font-size: 20px;
 }
@@ -44,7 +44,46 @@ li {
 .drinkName {
 	font-family: fantasy;
 	font-weight: 900;
+	font-size: 30px;
 	color: #380f5a;
 	padding: 5px;
 	/* text-shadow: 1px 1px 1px #380f5a; */
+}
+
+h1 {
+	color: rgb(194, 53, 182);
+	text-shadow: 1px 1px 1px #5e486f;
+	width: 400px;
+	margin: auto;
+	padding-top: 30px;
+	padding-left: 70px;
+	font-family: fantasy;
+}
+
+.singleDrink-box {
+	width: 800px;
+	margin: auto;
+	margin-top: 100px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	border-radius: 15px;
+	padding: 20px;
+	box-shadow: 1px 1px 1px #555;
+}
+
+.singleDrink-box img {
+	width: 300px;
+	float: left;
+	margin-right: 20px;
+}
+
+.message {
+	width: 400px;
+	margin: auto;
+	padding-left: 40px;
+}
+
+.contents {
+	padding: 10px;
 }

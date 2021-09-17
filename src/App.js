@@ -12,7 +12,7 @@ class App extends React.Component {
 		};
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onButtonClick = this.onButtonClick.bind(this);
-		this.singleDrinkDetail = this.singleDrinkDetail(this);
+		this.singleDrinkDetail = this.singleDrinkDetail.bind(this);
 	}
 
 	componentDidMount() {}
@@ -36,28 +36,30 @@ class App extends React.Component {
 			});
 	}
 
-	singleDrinkDetail() {
-		console.log("event");
-		// this.setState({singleDrink:})
-		// fetch("www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id)
-		// 	.then((res) => res.json())
-		// 	.then((result) => {
-		// 		this.setState({
-		// 			singleDrink: result.drinks,
-		// 		});
-		// 	});
+	singleDrinkDetail(id) {
+		console.log("id", id);
+
+		fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15300")
+			.then((res) => res.json())
+			.then((result) => {
+				console.log("result", result);
+				this.setState({
+					singleDrink: result.drinks[0],
+				});
+			});
+		console.log("this.state.singleDrink", this.state.singleDrink);
 	}
 
 	render() {
-		console.log("this.state", this.state);
-		console.log("this.singleDrinkDetail", this.singleDrinkDetail);
 		let data = this.state.drinkList;
 		let singleDrink = this.state.singleDrink;
-		let singleDrinkDetail = this.singleDrinkDetail;
-		if (singleDrink.id) {
+
+		if (singleDrink.idDrink) {
 			return (
 				<div>
-					<SingleDrink drink={singleDrink} />;
+					<div>
+						<SingleDrink drink={singleDrink} />
+					</div>
 				</div>
 			);
 		} else {
@@ -75,12 +77,13 @@ class App extends React.Component {
 								// <SingleDrink
 								//   singleDrink= {singleDrink}
 								// />
-								<div className="drinklist">
+								<div className="drinklist" key={drink.idDrink}>
 									<li
 										key={drink.idDrink}
+										id={drink.idDrink}
 										onClick={() => this.singleDrinkDetail(drink.idDrink)}
 									>
-										{drink.strDrink}
+										<div className="drinkName">{drink.strDrink}</div>
 										<img src={drink.strDrinkThumb} alt="" />
 									</li>
 								</div>

@@ -2,8 +2,16 @@ import React from "react";
 import "./App.css";
 
 const SingleDrink = (props) => {
-	// const drink = props;
-	console.log("props", props);
+	const drink = props.drink;
+	console.log("props", drink);
+	return (
+		<div className="singleDrink-box">
+			<div>Name {drink.strDrink}</div>
+			<img src={drink.strDrinkThumb} />
+			<div>{drink.strGlass}</div>
+			<div>{drink.strInstructions}</div>
+		</div>
+	);
 };
 
 export default SingleDrink;

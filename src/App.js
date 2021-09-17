@@ -36,8 +36,8 @@ class App extends React.Component {
 			});
 	}
 
-	singleDrinkDetail(e) {
-		console.log("event", e);
+	singleDrinkDetail() {
+		console.log("event");
 		// this.setState({singleDrink:})
 		// fetch("www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id)
 		// 	.then((res) => res.json())
@@ -50,10 +50,10 @@ class App extends React.Component {
 
 	render() {
 		console.log("this.state", this.state);
-
+		console.log("this.singleDrinkDetail", this.singleDrinkDetail);
 		let data = this.state.drinkList;
 		let singleDrink = this.state.singleDrink;
-
+		let singleDrinkDetail = this.singleDrinkDetail;
 		if (singleDrink.id) {
 			return (
 				<div>
@@ -70,30 +70,36 @@ class App extends React.Component {
 							value="Enter a drink"
 							onClick={this.onButtonClick}
 						/>
-						<ul>
+						<ul className="drinks">
 							{data.map((drink) => (
-								<li
-									key={drink.idDrink}
-									onClick={() => this.singleDrinkDetail(drink.idDrink)}
-								>
-									{drink.strDrink}
-									<img
-										src={drink.strDrinkThumb}
-										alt=""
-										onClick={this.singleDrinkDetail}
-									/>
-								</li>
+								// <SingleDrink
+								//   singleDrink= {singleDrink}
+								// />
+								<div className="drinklist">
+									<li
+										key={drink.idDrink}
+										onClick={() => this.singleDrinkDetail(drink.idDrink)}
+									>
+										{drink.strDrink}
+										<img src={drink.strDrinkThumb} alt="" />
+									</li>
+								</div>
 							))}
 						</ul>
 					</div>
 				);
 			} else {
 				return (
-					<div className="App">
-						<input type="text" onChange={this.onInputChange} />
+					<div className="ingredient-input">
 						<input
+							type="text"
+							onChange={this.onInputChange}
+							placeholder="ingredient"
+						/>
+						<input
+							placeholder="ingredient"
 							type="button"
-							value="Enter a drink"
+							value="Enter"
 							onClick={this.onButtonClick}
 						/>
 					</div>
